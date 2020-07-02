@@ -59,8 +59,8 @@ do
 	zfs send -v -i $recentBSnap $NEWSNAP | zfs recv "${BACKUPPOOL}/${DATASET}"
 	
 	# alte Snapshots loeschen
-	zfs list -rt snap -H -o name "${BACKUPPOOL}/${DATASET}" | grep "@${PREFIX}-" | tail -r | tail +$KEEPOLD | xargs -n 1 zfs destroy -r
-    zfs list -rt snap -H -o name "${MASTERPOOL}/${DATASET}" | grep "@${PREFIX}-" | tail -r | tail +$KEEPOLD | xargs -n 1 zfs destroy -r
+	zfs list -rt snap -H -o name "${BACKUPPOOL}/${DATASET}" | grep "@${PREFIX}-" | tac | tail +$KEEPOLD | xargs -n 1 zfs destroy -r
+    zfs list -rt snap -H -o name "${MASTERPOOL}/${DATASET}" | grep "@${PREFIX}-" | tac | tail +$KEEPOLD | xargs -n 1 zfs destroy -r
 done
 
 zpool export $BACKUPPOOL
