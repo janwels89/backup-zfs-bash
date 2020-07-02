@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (C) Jörg Binnewald. All rights reserved.  
 
 # Pool mit den zu sichernden Daten
 MASTERPOOL="ZRAID5"
